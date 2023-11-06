@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'email_logi',
+    'email_login',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +72,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'email_project.wsgi.application'
+
+# custom user content
+
+# User substitution
+# https://docs.djangoproject.com/en/1.11/topics/auth/customizing/#auth-custom-user
+
+AUTH_USER_MODEL = 'email_login.User'
+
+
+
+
+
 
 
 # Database

@@ -22,7 +22,7 @@ from email_login import views
 
 urlpatterns = [
     path("",views.home,name='home'),
-    path("register",views.registerUser,name='register'),
-    path("login_user",views.loginUser,name='loginUser'),
-    path("logout_user",views.logoutUser,name='logoutUser'),
+    path("register/",views.registerUser,name='register'),
+    path("login_user/",views.loginUser,name='loginUser'),
+    path("logout_user/",views.logoutUser,name='logoutUser'),
 ]
