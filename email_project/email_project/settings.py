@@ -10,6 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+
+
+'''  email login article 
+https://www.fomfus.com/articles/how-to-use-email-as-username-for-django-authentication-removing-the-username       '''
+
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
