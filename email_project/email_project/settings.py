@@ -36,6 +36,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+AUTH_USER_MODEL='email_login.Account'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -83,10 +85,6 @@ WSGI_APPLICATION = 'email_project.wsgi.application'
 # User substitution
 # https://docs.djangoproject.com/en/1.11/topics/auth/customizing/#auth-custom-user
 
-AUTH_USER_MODEL = 'email_login.User'
-
-
-
 
 
 
@@ -100,6 +98,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
@@ -119,6 +118,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+
+# AUTH_USER_MODEL = 'email_login.Account'
 
 
 # Internationalization
