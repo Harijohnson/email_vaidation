@@ -8,7 +8,7 @@ class RegistrationForm(UserCreationForm):
 
     email = forms.EmailField(max_length=200,help_text = 'Required. Add valid email address')
     class Meta:
-        models = Account
+        model = Account
         fields = ('email','username','password1','password2')
 
     def clean_email(self):

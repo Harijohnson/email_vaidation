@@ -11,9 +11,8 @@ def registerUser(request,*args,**kwargs):
     user = request.user
     if user.is_authenticated:
         return HttpResponse(f'You are alread authenticated as { user.email} .')
-    context = {
-    }
-    if request.method == 'POST':
+    context = {}
+    if request.POST:
         form  = RegistrationForm(request.POST)
         if form.is_valid:
             form.save()
@@ -26,6 +25,7 @@ def registerUser(request,*args,**kwargs):
                 return redirect(destination)
             return redirect('home')
         else:
+            form = RegistrationForm()
             context['registration_form'] =  form
 
 
