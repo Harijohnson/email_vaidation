@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% extends 'base.html' %}
+    {% extends 'email/base.html' %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Logout</title>
 </head>
 <body>
 
     {% block content %}
-    <h1>Register form :</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        
-        <button type="submit"> Submit </button>
-    </form>
+
     
     {% endblock %}
     

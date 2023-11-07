@@ -37,6 +37,10 @@ ALLOWED_HOSTS = []
 
 
 AUTH_USER_MODEL='email_login.Account'
+AUTHENTICATION_BACKENDS =(
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    'email_login.backends.CaseInsensitiveModelBackend',
+)
 
 # Application definition
 

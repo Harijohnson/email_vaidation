@@ -18,8 +18,6 @@ Including another URLconf
 from django.urls import path
 from email_login import views
 
-
-
 urlpatterns = [
     path("",views.home,name='home'),
     path("register_user/",views.registerUser,name='register_user'),
