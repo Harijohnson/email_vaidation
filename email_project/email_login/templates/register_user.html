@@ -9,7 +9,13 @@
 <body>
 
     {% block content %}
-
+    <h1>Register form :</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        
+        <button type="submit"> Submit </button>
+    </form>
     
     {% endblock %}
     

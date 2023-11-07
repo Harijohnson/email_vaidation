@@ -9,8 +9,13 @@
 <body>
 
     {% block content %}
-
-    
+    <h1>Login User</h1>
+    <form method="post">
+        {% csrf_token %}
+        <h1>Email :  {{ form.email }}</h1>
+        <h1>Password : {{ form.password1 }}</h1>
+        <button type="submit"> Submit </button>
+    </form>
     {% endblock %}
     
 </body>
