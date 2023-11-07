@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,authenticate,logout
-from email_login.forms import RegistrationForm
+from email_login.forms import RegistrationForm,AccountAuthentication
 from django.http import HttpResponse
 # Create your views here.
 def home(request):
@@ -16,14 +16,15 @@ def registerUser(request,*args,**kwargs):
         form  = RegistrationForm(request.POST)
         if form.is_valid:
             form.save()
-            email = form.cleaned_data.get('email').lower()
-            raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=email,password = raw_password )
-            login(request,account)
-            destination = kwargs.get('next')
-            if destination:
-                return redirect(destination)
-            return redirect('home')
+            # email = form.cleaned_data.get('email').lower()
+            # raw_password = form.cleaned_data.get('password1')
+            # account = authenticate(email=email,password = raw_password )
+            # login(request,account)
+            # destination = get_rediect_if_exist(request)
+            # if destination:  # if destination is not none 
+            #     return redirect(destination)
+            # return redirect('home')
+            return redirect('login_user')
         else:
             form = RegistrationForm()
             context['registration_form'] =  form
@@ -40,6 +41,33 @@ def registerUser(request,*args,**kwargs):
 
 
 
+def loginUser(request,*args,**kwargs):
+
+    context = {}
+    user = request.user
+    if user.is_authenticated:
+        return redirect('home')
+    destination = get_rediect_if_exist(request)
+    if request.POST:
+        form = AccountAuthentication(request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            password = request.POST['password']
+            user = authenticate(email=email,password = password )
+            if user is not None:
+                login(request,user)
+                return redirect('home')
+        else:
+            context['login_form'] = form
+    return render(request,'email/login_user.html',context)
+
+
+def get_rediect_if_exist(request):
+    redirect = None
+    if request.GET:
+        if request.GET.get('next'):
+            redirect = str(request.GET.get('next'))
+    return redirect
 
 
 
@@ -53,15 +81,10 @@ def registerUser(request,*args,**kwargs):
 
 
 
-
-
-def loginUser(request):
-    
-
-    context = {
-    }
-    return render(request,'login_user.html',context)
 
 def logoutUser(request):
-    context={}
-    return render(request,'logout_user.html',context)
+    if request.method=='POST':
+        logout(request)
+        return redirect('home')
+    else:
+        return render(request,'email/logout_user.html')

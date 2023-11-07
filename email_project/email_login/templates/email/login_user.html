@@ -1,22 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% extends 'email/base.html' %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-</head>
-<body>
+{% extends 'email/base.html' %}
+{% load static %}
 
-    {% block content %}
-    <h1>Login User</h1>
-    <form method="post">
-        {% csrf_token %}
-        <h1>Email :  {{ form.email }}</h1>
-        <h1>Password : {{ form.password1 }}</h1>
-        <button type="submit"> Submit </button>
-    </form>
-    {% endblock %}
-    
-</body>
-</html>
+{% block content %}
+
+
+<style type="text/css">
+
+  .card-signin {
+	  width: 100%;
+	  max-width: 400px;
+	  padding: 15px;
+	  margin: auto;
+  }
+  
+  .form-signin input[type="email"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="text"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+
+</style>
+
+<div class="container-fluid">
+	<div class="row justify-content-center">
+		<div class="card card-signin">
+		  <div class="card-body">
+		    <form class="form-signin" method="post">{% csrf_token %}
+				<div class="d-flex flex-column pb-3">
+				<img class="img-fluid mx-auto d-block" src="{% static 'images/defult.png' %}" alt="codingwithmitch logo" width="72" height="72">
+				</div>
+				<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+
+				<br>
+				<input type="password" name="password" id="inputPassword1" class="form-control" placeholder="Password" required>
+
+				{% for field in registration_form %}
+				<p>
+				{% for error in field.errors %}
+				<p style="color: red">{{ error }}</p>
+				{% endfor %}
+				</p>
+				{% endfor %}
+				{% if registration_form.non_field_errors %}
+				<div style="color: red">
+					<p>{{registration_form.non_field_errors}}</p>
+				</div>
+
+				{% endif %}
+                <br>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+
+				</form>
+		  </div>
+		</div>
+		
+	</div>
+</div>
+
+{% endblock content %}
