@@ -35,21 +35,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'   #only for development 
-
-    
+# if DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'   #only for development 
 
 
 
 
 
 
-AUTH_USER_MODEL='email_login.Account'
-AUTHENTICATION_BACKENDS =(
-    'django.contrib.auth.backends.AllowAllUsersModelBackend',
-    'email_login.backends.CaseInsensitiveModelBackend',
-)
+
+
+
 
 # Application definition
 
@@ -113,6 +109,23 @@ DATABASES = {
 }
 
 
+AUTH_USER_MODEL = 'email_login.Account'
+AUTHENTICATION_BACKENDS =(
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    'email_login.backends.CaseInsensitiveModelBackend',
+)
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": "email",
+#         "USER": "root",
+#         "PASSWORD": "root",
+#         "HOST": "127.0.0.1",
+#         "PORT": "3306",
+#     }
+# }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -134,7 +147,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
-# AUTH_USER_MODEL = 'email_login.Account'
+AUTH_USER_MODEL = 'email_login.Account'
 
 
 # Internationalization

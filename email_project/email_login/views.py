@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login,authenticate,logout
 from email_login.forms import RegistrationForm,AccountAuthentication
 from django.http import HttpResponse
-# Create your views here.
+# # Create your views here.
 def home(request):
     context={}
     return render(request,'email/home.html',context)
@@ -27,11 +27,11 @@ def registerUser(request,*args,**kwargs):
             return redirect('login_user')
         else:
             form = RegistrationForm()
-            context['registration_form'] =  form
+            context['registration_form'] =  form 
 
 
    
-    return render(request,'email/register_user.html',context)
+    return render(request,'email/register_user.html',context= {})
 
 
 
@@ -59,7 +59,7 @@ def loginUser(request,*args,**kwargs):
                 return redirect('home')
         else:
             context['login_form'] = form
-    return render(request,'email/login_user.html',context)
+    return render(request,'email/login_user.html',context={})
 
 
 def get_rediect_if_exist(request):
@@ -88,4 +88,4 @@ def logoutUser(request):
         logout(request)
         return redirect('home')
     else:
-        return render(request,'email/logout_user.html')
+        return render(request,'email/logout_user.html') 
