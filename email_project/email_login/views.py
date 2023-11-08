@@ -14,7 +14,7 @@ def registerUser(request,*args,**kwargs):
     context = {}
     if request.POST:
         form  = RegistrationForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             print("after validated of form is printing ",form)
             email = request.POST.get('email')
             username = request.POST.get('username')

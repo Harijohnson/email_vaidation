@@ -5,8 +5,6 @@ from django.db import models
 #creat anew user
 
 class MyAccountManager(BaseUserManager):
-    
-
     def create_user(self,email,username,password=None):
         if not email:
             raise ValueError('User must have an email address.')
@@ -53,12 +51,14 @@ class Account(AbstractBaseUser):
     profile_image  = models.ImageField(max_length=225,upload_to=get_profile_image_filepath ,null= True,blank=True,default=get_default_profile_image)
     hide_email = models.BooleanField(default=True)
 
-    objects = MyAccountManager()
+    
 
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    objects = MyAccountManager()
+    
     def __str__(self):
         return self.username
 
