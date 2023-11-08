@@ -15,15 +15,23 @@ def registerUser(request,*args,**kwargs):
     if request.POST:
         form  = RegistrationForm(request.POST)
         if form.is_valid:
+            print("after validated of form is printing ",form)
+            email = request.POST.get('email')
+            username = request.POST.get('username')
+            pass1 = request.POST.get('password1')
+            pass2 = request.POST.get('password2')
+
+            print('credentiala are ',email,username,pass1,pass2)
+
             form.save()
             # email = form.cleaned_data.get('email').lower()
             # raw_password = form.cleaned_data.get('password1')
+            
             # account = authenticate(email=email,password = raw_password )
             # login(request,account)
             # destination = get_rediect_if_exist(request)
             # if destination:  # if destination is not none 
             #     return redirect(destination)
-            # return redirect('home')
             return redirect('login_user')
         else:
             form = RegistrationForm()
