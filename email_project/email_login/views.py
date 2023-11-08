@@ -82,6 +82,7 @@ def get_rediect_if_exist(request):
 
 
 
+
 def logoutUser(request):
     if request.method=='POST':
         logout(request)
